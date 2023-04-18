@@ -17,3 +17,11 @@ if __name__ == '__main__':
     props = ObjectProperties(class_code=30200, feature_ID=0)
     object_response = ObjectResponse(features=[Feature(geometry=geom, properties=props)])
     #save_res = helper.save_object(object_response); print(save_res)
+
+    update_id = 3166142
+    geom = Polygon(coordinates=[[[30.5, 60.0], [30.5, 60.1], [30.6, 60.1], [30.6, 60.0], [30.5, 60.0]]])
+    props = ObjectProperties(class_code=30200, feature_ID=update_id)
+    object_response = ObjectResponse(features=[Feature(geometry=geom, properties=props)])
+    save_res = helper.save_object(object_response); print(save_res)
+    updated_object = helper.load_object(ids=update_id)
+    print(updated_object)
