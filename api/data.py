@@ -54,7 +54,12 @@ class ObjectProperties(BaseModel):
         alias_generator = lambda name: "pidOOODBAttr_" + camelize(name)
 
 
-ObjectResponse = FeatureCollection[Point | Polygon | LineString | MultiLineString, ObjectProperties]
+class ObjectResponse(
+    FeatureCollection[Point | Polygon | LineString | MultiLineString, ObjectProperties]):
+    class Config(BaseConfig):
+        allow_population_by_field_name = True
+        alias_generator = lambda name: "pidOOODBAttr_" + camelize(
+            name) if name in ObjectProperties.__fields__ else name
 
 
 class SaveObject(AbstractCamelCaseModel):
