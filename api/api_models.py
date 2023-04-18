@@ -60,8 +60,3 @@ class ObjectResponse(
         allow_population_by_field_name = True
         alias_generator = lambda name: "pidOOODBAttr_" + camelize(
             name) if name in ObjectProperties.__fields__ else name
-
-
-class SaveObject(AbstractCamelCaseModel):
-    # TODO
-    pass

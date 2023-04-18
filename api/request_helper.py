@@ -3,7 +3,7 @@ from typing import Any
 from pydantic import parse_obj_as, BaseModel
 from requests import Response
 
-from api_models import CatalogResponse, ObjectResponse, SaveObject
+from api_models import CatalogResponse, ObjectResponse
 from requests import get, post
 
 
@@ -16,7 +16,7 @@ class RequestHelper(ABC):
         assert response.ok, response
         return parse_obj_as(ObjectResponse, response.json())
 
-    def save_object(self, model: SaveObject, **kwargs) -> bool:
+    def save_object(self, model: ObjectResponse, **kwargs) -> bool:
         return self.do_raw_request(model, apioodbtype="saveobj", **kwargs).ok
 
     @abstractmethod
