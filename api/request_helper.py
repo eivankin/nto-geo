@@ -19,6 +19,13 @@ class RequestHelper(ABC):
     def save_object(self, model: ObjectResponse, **kwargs) -> bool:
         return self.do_raw_request(model, apioodbtype="saveobj", **kwargs).ok
 
+    def remove_objects(self, ids, **kwargs):
+        ids_str = str(ids[0]) + ''.join(','+str(i) for i in ids[1:])
+        return self.do_raw_request(apioodbtype="remobj", ids=ids_str, **kwargs).ok
+    
+    def get_last_commit_id(self):
+        return self.do_raw_request(apioodbtype="lastcommit").json()['LastCommitID']
+
     @abstractmethod
     def do_raw_request(self, data: BaseModel | None = None, **kwargs: Any) -> Response:
         pass
