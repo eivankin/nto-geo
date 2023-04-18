@@ -2,7 +2,7 @@ from abc import ABCMeta
 
 from pydantic import BaseModel, BaseConfig
 from humps import camelize
-from geojson_pydantic import FeatureCollection, Feature, Polygon
+from geojson_pydantic import FeatureCollection, Polygon, Point, LineString, MultiLineString
 
 
 class CamelCaseConfig(BaseConfig):
@@ -54,7 +54,7 @@ class ObjectProperties(BaseModel):
         alias_generator = lambda name: "pidOOODBAttr_" + camelize(name)
 
 
-ObjectResponse = FeatureCollection[Polygon, ObjectProperties]
+ObjectResponse = FeatureCollection[Point | Polygon | LineString | MultiLineString, ObjectProperties]
 
 
 class SaveObject(AbstractCamelCaseModel):
