@@ -3,7 +3,7 @@ from typing import Any
 from pydantic import parse_obj_as, BaseModel
 from requests import Response
 
-from .data import CatalogResponse, ObjectResponse, SaveObject
+from api.data import CatalogResponse, ObjectResponse, SaveObject
 from requests import get, post
 
 
