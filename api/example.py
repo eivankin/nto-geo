@@ -1,5 +1,5 @@
-from api.request_helper import APIRequestHelper
-from api.util import filter_by_class, get_class_id_by_name
+from request_helper import APIRequestHelper
+from util import filter_by_class, get_class_id_by_name
 
 if __name__ == '__main__':
     helper = APIRequestHelper("http://192.168.1.62:8888/mapservices/oodb")
