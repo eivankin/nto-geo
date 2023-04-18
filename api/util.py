@@ -1,14 +1,13 @@
 import re
 
-from data import ObjectResponse, CatalogResponse
+from api_models import ObjectResponse, CatalogResponse
 from geojson_pydantic import Feature
-from tqdm import tqdm
 
 
 def filter_by_class(class_regex: str, all_objects: ObjectResponse) -> list[Feature]:
     return [
         feature
-        for feature in tqdm(all_objects.features, desc='feats')
+        for feature in all_objects.features
         if re.fullmatch(class_regex, feature.properties.class_code)
     ]
 
