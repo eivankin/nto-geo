@@ -32,4 +32,4 @@ class APIRequestHelper(RequestHelper):
         params = dict(**kwargs, request="apioodb", version="1.0.0")
         if data is None:
             return get(self.endpoint_url, params=params)
-        return post(self.endpoint_url, json=data.json(exclude_unset=True, by_alias=True), params=params)
+        return post(self.endpoint_url, data=data.json(exclude_unset=True, by_alias=True), params=params)
