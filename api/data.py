@@ -46,7 +46,7 @@ class CatalogResponse(AbstractCamelCaseModel):
 
 
 class ObjectProperties(BaseModel):
-    class_code: int
+    class_code: str
     feature_ID: int
 
     class Config(BaseConfig):
