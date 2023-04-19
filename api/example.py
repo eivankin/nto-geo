@@ -9,10 +9,9 @@ if __name__ == '__main__':
     tree_class = get_class_id_by_name(".*Древесн.*", catalog)
     print(tree_class)
     filtered = filter_by_class(str(tree_class), helper.load_object(
-        bbox="34.85542678861543,66.06507873609485,39.760146455994175,67.71469879171593"))
+        bbox="35,66,36,67"))
     print(len(filtered))
-
-    print(helper.get_last_commit_id())
+    print(filtered[0])
 
     geom = Polygon(coordinates=[[[30.551342, 60.013808], [30.551342, 60.017778], [30.560372, 60.017778], [30.560372, 60.013808], [30.551342, 60.013808]]])
     props = ObjectProperties(class_code=30200, feature_ID=0)

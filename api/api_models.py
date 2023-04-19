@@ -1,6 +1,6 @@
 from abc import ABCMeta
 
-from pydantic import BaseModel, BaseConfig
+from pydantic import BaseModel, BaseConfig, Extra
 from humps import camelize
 from geojson_pydantic import FeatureCollection, Polygon, Point, LineString, MultiLineString
 
@@ -47,9 +47,13 @@ class CatalogResponse(AbstractCamelCaseModel):
 
 class ObjectProperties(BaseModel):
     class_code: str
-    feature_ID: int
+    feature_ID: str
+    resource: list[str] | None
+    commit_ID_feat: str
+    commit_ID_geom: str
 
     class Config(BaseConfig):
+        extra = Extra.allow
         allow_population_by_field_name = True
         alias_generator = lambda name: "pidOOODBAttr_" + camelize(name)
 
