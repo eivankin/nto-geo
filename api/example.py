@@ -7,26 +7,29 @@ if __name__ == '__main__':
     helper = APIRequestHelper("http://192.168.1.62:8888/mapservices/oodb")
     catalog = helper.get_catalog()
     tree_class = get_class_id_by_name(".*Древесн.*", catalog)
-    print(tree_class)
-    filtered = filter_by_class(str(tree_class), helper.load_object(
-        bbox="35,66,36,67"))
-    print(len(filtered))
-    print(filtered[0])
+    #print(tree_class)
+    #filtered = filter_by_class(str(tree_class), helper.load_object(bbox="34.85542678861543,66.06507873609485,39.760146455994175,67.71469879171593"))
+    #print(len(filtered))
+    print(f'last_commit {helper.get_last_commit_id()}\n')
 
-    geom = Polygon(coordinates=[[[30.551342, 60.013808], [30.551342, 60.017778], [30.560372, 60.017778], [30.560372, 60.013808], [30.551342, 60.013808]]])
-    props = ObjectProperties(class_code=30200, feature_ID=0)
+    print('save')
+    geom = Polygon(coordinates=[[[30.87485, 59.830497], [30.87485, 59.838081], [30.896658, 59.838081], [30.896658, 59.830497], [30.87485, 59.830497]]])
+    props = ObjectProperties(class_code=30200, feature_ID=0, **{'013': 'adkfbdhvb'})
     object_response = ObjectResponse(features=[Feature(geometry=geom, properties=props)])
     #save_res = helper.save_object(object_response); print(save_res)
+    print(f'last_commit {helper.get_last_commit_id()}\n')
 
-    update_id = 3166142
-    geom = Polygon(coordinates=[[[30.5, 60.0], [30.5, 60.1], [30.6, 60.1], [30.6, 60.0], [30.5, 60.0]]])
-    props = ObjectProperties(class_code=30200, feature_ID=update_id)
-    object_response = ObjectResponse(features=[Feature(geometry=geom, properties=props)])
+    print('update')
+    update_id = 3166152
+    object_response = helper.load_object(ids=update_id)
+    object_response.features[0].geometry = Polygon(coordinates=[[[30.896658, 59.838081], [30.896658, 59.845633], [30.929458, 59.845633], [30.929458, 59.838081], [30.896658, 59.838081]]])
+    #print(object_response.json(exclude_none=True, by_alias=True))
     #save_res = helper.save_object(object_response); print(save_res)
     #updated_object = helper.load_object(ids=update_id)
-    #print(updated_object)
+    #print(updated_object.json(exclude_none=True, by_alias=True))
+    print(f'last_commit {helper.get_last_commit_id()}\n')
 
-    remove_id = 3166144
+    print('remove')
+    remove_id = 3166147
     #remove_res = helper.remove_objects([remove_id]); print(remove_res)
-
-    
+    print(f'last_commit {helper.get_last_commit_id()}\n')

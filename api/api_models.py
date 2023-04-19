@@ -49,8 +49,8 @@ class ObjectProperties(BaseModel):
     class_code: str
     feature_ID: str
     resource: list[str] | None
-    commit_ID_feat: str
-    commit_ID_geom: str
+    commit_ID_feat: str | None
+    commit_ID_geom: str | None
 
     class Config(BaseConfig):
         extra = Extra.allow
