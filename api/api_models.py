@@ -18,7 +18,7 @@ class AbstractCamelCaseModel(BaseModel, metaclass=ABCMeta):
 
 class ClassInfo(AbstractCamelCaseModel):
     alias: str
-    attributes: list[int]
+    attributes: list[str]
     class_code: str
     draw_order: int
     name: str
